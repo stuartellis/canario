@@ -1,0 +1,32 @@
+{
+    "name": "canario-developer",
+    "build": {
+        "dockerfile": "devcontainer.dockerfile",
+        "args": {
+            "VARIANT": "bookworm"
+        }
+    },
+    "remoteUser": "vscode",
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2.10.1": "latest",
+        "ghcr.io/devcontainers/features/git:1.2.0": "os-provided",
+        "ghcr.io/devcontainers/features/python:1.4.1": "3.12.2"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "charliermarsh.ruff",
+                "davidanson.vscode-markdownlint",
+                "EditorConfig.EditorConfig",
+                "timonwong.shellcheck"
+            ]
+        }
+    },
+    "postCreateCommand": "sh .devcontainer/bootstrap.sh",
+    "containerUser": "vscode",
+    "runArgs": [
+        "--userns=keep-id",
+        "--env-file",
+        ".devcontainer/devcontainer.env"
+    ]
+}

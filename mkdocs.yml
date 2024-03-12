@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuart@stuartellis.name>
+#
+# SPDX-License-Identifier: MIT
+#
+# Configuration for MkDocs
+#
+# https://www.mkdocs.org/
+
+site_name: Canario
+site_description: Checks the healthiness of the environment that it is in.
+site_url: https://github.com/stuartellis/canario
+repo_url: https://github.com/stuartellis/canario
+
+nav:
+- Home:
+  - Overview: index.md
+  - Contributing: contributing.md
+  - API reference: api.md
+  - License: license.md
+
+theme:
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - yaml
+
+exclude_docs: |
+  mod.just
+
+plugins:
+- mkdocstrings:
+    default_handler: python
+    handlers:
+      python:
+        options:
+          show_source: false
+
+markdown_extensions:
+- pymdownx.snippets:
+    base_path:  # Paths to search for inclusions
+    - CONTRIBUTING.md
+    - LICENSE.txt
+    - README.md
+    check_paths: true
