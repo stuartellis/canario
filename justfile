@@ -22,6 +22,7 @@ bootstrap:
 
 # Build artifacts
 build:
+    @just --unstable poetry::export
     @just --unstable containers::build
 
 # Delete generated files
