@@ -7,7 +7,7 @@
 # https://www.mkdocs.org/
 
 site_name: Canario
-site_description: Checks the healthiness of the environment that it is in.
+site_description: A little application that checks the healthiness of the environment that it is in.
 site_url: https://github.com/stuartellis/canario
 repo_url: https://github.com/stuartellis/canario
 

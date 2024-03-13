@@ -2,7 +2,7 @@
 
 ![stability: experimental](https://img.shields.io/badge/stability-experimental-orange) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit) [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-An application for checking the healthiness of the environment that it is in.
+A little application that checks the healthiness of the environment that it is in.
 
 -----
 
