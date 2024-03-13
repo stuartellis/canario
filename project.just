@@ -10,7 +10,7 @@ about:
     import tomllib
     with open("pyproject.toml", mode="rb") as fp:
         config = tomllib.load(fp)
-        for item in ["name", "version", "description"]:
+        for item in ["name", "version", "description",]:
             data = config["tool"]["poetry"][item]
             print(f"{item.title()}: {data}")
 

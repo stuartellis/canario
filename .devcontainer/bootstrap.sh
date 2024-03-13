@@ -7,7 +7,7 @@
 # Bootstrap Dev Container environment
 #
 # This installs just and Trivy,
-# then immediately runs the bootstrap recipe in just.
+# then immediately runs the bootstrap recipe in the project justfile.
 #
 # Example:
 #
