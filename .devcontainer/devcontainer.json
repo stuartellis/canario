@@ -15,6 +15,7 @@
     "customizations": {
         "vscode": {
             "extensions": [
+                "AquaSecurityOfficial.trivy-vulnerability-scanner",
                 "charliermarsh.ruff",
                 "davidanson.vscode-markdownlint",
                 "EditorConfig.EditorConfig",

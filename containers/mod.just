@@ -10,7 +10,7 @@ container_tool := "docker"
 
 # Build container image
 [no-cd]
-build image-id="runner":
+build image-id="runner": (lint image-id) && (scan image-id)
     #!/usr/bin/env python3
     import subprocess
     import tomllib
@@ -44,6 +44,31 @@ clean:
     @{{ container_tool }} container prune -f
     @{{ container_tool }} image prune -f
 
+# Check container build file with Trivy
+[no-cd]
+lint image-id="runner":
+    #!/usr/bin/env python3
+    import os
+    import subprocess
+    import tomllib
+    image_id = "{{ image-id }}"
+    image_platform = "{{ container_image_os }}/{{ container_image_cpu }}"
+    trivy_cache_dir = "./tmp/trivy"
+    with open("pyproject.toml", mode="rb") as fp:
+        config = tomllib.load(fp)
+        project_name = config["tool"]["poetry"]["name"]
+        build_file = config["tool"]["project"]["containers"][image_id]["build_file"]
+        image_name = f"{project_name}-{image_id}"
+        image_version = config["tool"]["poetry"]["version"]
+        image_tag = f"{image_name}:{image_version}"
+        args = ["trivy", "config",
+            "--quiet",
+            "--cache-dir", trivy_cache_dir,
+            "--ignorefile", "./.trivyignore.yaml",
+            build_file,
+        ]
+        subprocess.run(args, check=True)
+
 # Run container image
 [no-cd]
 run image-id="runner":
@@ -66,6 +91,31 @@ run image-id="runner":
             "--mount", "type=bind,source=.,destination=/opt/app",
             "-w", "/opt/app",
             image_tag
+        ]
+        subprocess.run(args, check=True)
+
+# Scan container image with Trivy
+[no-cd]
+scan image-id="runner":
+    #!/usr/bin/env python3
+    import os
+    import subprocess
+    import tomllib
+    image_id = "{{ image-id }}"
+    image_platform = "{{ container_image_os }}/{{ container_image_cpu }}"
+    trivy_cache_dir = "./tmp/trivy"
+    with open("pyproject.toml", mode="rb") as fp:
+        config = tomllib.load(fp)
+        project_name = config["tool"]["poetry"]["name"]
+        image_name = f"{project_name}-{image_id}"
+        image_version = config["tool"]["poetry"]["version"]
+        image_tag = f"{image_name}:{image_version}"
+        args = ["trivy", "image",
+            "--cache-dir", trivy_cache_dir,
+            "--compliance", "docker-cis",
+            "--ignorefile", "./.trivyignore.yaml",
+            "--quiet",
+            image_tag,
         ]
         subprocess.run(args, check=True)
 

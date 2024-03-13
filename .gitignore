@@ -26,6 +26,3 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .venv*
-
-# pre-commit
-.pre-commit-trivy-cache/

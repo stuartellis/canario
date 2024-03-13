@@ -6,22 +6,29 @@
 
 # Bootstrap Dev Container environment
 #
-# This installs just and immediately runs the bootstrap recipe.
+# This installs just and Trivy,
+# then immediately runs the bootstrap recipe in just.
 #
 # Example:
 #
 # sh .devcontainer/bootstrap.sh
 #
 # Website for just: https://just.systems
+#
+# # Website for Trivy: https://aquasecurity.github.io/trivy
 
 set -eu
 
 BIN_DIR=$HOME/.local/bin
 JUST_VERSION=$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['tool']['project']['utilities']['just'])")
+TRIVY_VERSION=$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['tool']['project']['utilities']['trivy'])")
 
 # Install just
 sh ./.devcontainer/install-just.sh --to "$BIN_DIR" --tag "$JUST_VERSION" --force
 just --completions bash >> "$HOME/.bashrc"
+
+# Install Trivy
+sh ./.devcontainer/install-trivy.sh --to "$BIN_DIR" --tag "$TRIVY_VERSION" --force
 
 # Run just recipe
 just bootstrap

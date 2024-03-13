@@ -10,6 +10,7 @@ mod containers
 mod docs
 mod poetry
 mod pre-commit
+mod project
 
 # List available recipes
 help:
@@ -29,7 +30,7 @@ build:
 clean:
     @just --unstable docs::clean
     @just --unstable poetry::clean
-    @just --unstable pre-commit::clean
+    @just --unstable project::clean
     @just --unstable containers::clean
 
 # Run test coverage analysis

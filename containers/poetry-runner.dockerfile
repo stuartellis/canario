@@ -76,4 +76,6 @@ USER appuser
 COPY --from=builder ${APP_PATH}/dist/*.whl ./
 RUN pip install --user ./${APP_NAME}*.whl
 
+HEALTHCHECK NONE
+
 CMD ["python3", "-m", "canario"]
