@@ -6,7 +6,7 @@ SPDX-License-Identifier: MIT
 
 # Canario
 
-![stability: experimental](https://img.shields.io/badge/stability-experimental-orange) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit) [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+![stability: experimental](https://img.shields.io/badge/stability-experimental-orange) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit) [![REUSE status](https://api.reuse.software/badge/github.com/stuartellis/canario)](https://api.reuse.software/info/github.com/stuartellis/canario) [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 A little application that checks the healthiness of the environment that it is in.
 
