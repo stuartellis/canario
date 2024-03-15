@@ -64,6 +64,36 @@ lint image-id="runner":
         ]
         subprocess.run(args, check=True)
 
+# Force a complete rebuild of container image
+[no-cd]
+rebuild image-id="runner":
+    #!/usr/bin/env python3
+    import subprocess
+    import tomllib
+    container_exe = "{{ container_tool }}"
+    image_platform = "{{ container_image_os }}/{{ container_image_cpu }}"
+    image_id = "{{ image-id }}"
+    with open("pyproject.toml", mode="rb") as fp:
+        config = tomllib.load(fp)
+        image_base = config["tool"]["project"]["containers"][image_id]["base_image"]
+        build_file = config["tool"]["project"]["containers"][image_id]["build_file"]
+        project_name = config["tool"]["poetry"]["name"]
+        app_name = config["tool"]["project"]["containers"][image_id]["app_name"]
+        image_name = f"{project_name}-{image_id}"
+        image_version = config["tool"]["poetry"]["version"]
+        image_tag = f"{image_name}:{image_version}"
+        poetry_version = config["tool"]["project"]["utilities"]["poetry"]
+        args = [container_exe, "buildx", "build",
+            "--platform", image_platform,
+            "-f", build_file, "-t", image_tag,
+            "--no-cache", "--pull",
+            "--build-arg", f"BASE_IMAGE={image_base}",
+            "--build-arg", f"APP_NAME={app_name}",
+            "--build-arg", f"POETRY_VERSION={poetry_version}",
+            "--label", f"org.opencontainers.image.version={image_version}",
+            ".",]
+        subprocess.run(args, check=True)
+
 # Run container image
 [no-cd]
 run image-id="runner":
