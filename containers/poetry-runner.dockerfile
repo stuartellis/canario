@@ -6,19 +6,23 @@
 #
 
 ARG APP_PATH=/opt/app
+ARG DEBIAN_FRONTEND=noninteractive
 ARG BASE_IMAGE
 
 ## Base stage
 
 FROM ${BASE_IMAGE} as core
 
-RUN apt-get update && \
+ARG DEBIAN_FRONTEND
+
+RUN apt-get update -q && \
     apt-get upgrade -qy
 
 FROM core as poetry
 
 ARG APP_NAME
 ARG APP_PATH
+ARG DEBIAN_FRONTEND
 ARG PYTHON_VERSION
 ARG POETRY_VERSION
 
@@ -64,10 +68,13 @@ ENV \
     PYTHONUNBUFFERED=1 \
     PYTHONFAULTHANDLER=1
 
+
 ENV \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100
+
+RUN rm -rf /var/lib/apt/lists/*
 
 RUN groupadd --gid 1000 appusers \
   && useradd --uid 1000 --gid appusers --shell /bin/sh --create-home appuser
