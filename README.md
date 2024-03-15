@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Stuart Ellis <stuart@stuartellis.name>
+
+SPDX-License-Identifier: MIT
+-->
+
 # Canario
 
 ![stability: experimental](https://img.shields.io/badge/stability-experimental-orange) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit) [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)

@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
+# SPDX-FileCopyrightText: Waived by terms of license
+#
+# SPDX-License-Identifier: CC0-1.0
+#
 # From: https://github.com/casey/just/blob/master/www/install.sh
 # License: Creative Commons Zero v1.0 Universal
-# Copyright: Waived by terms of license
 # Commit ID: 6d7df195575c25786b4e430c194fa0ea2fde8000
 # Downloaded: 2024-02-25T08:08:00Z
 

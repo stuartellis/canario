@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Stuart Ellis <stuart@stuartellis.name>
+
+SPDX-License-Identifier: MIT
+-->
+
 # Contributing to This Project
 
 This project includes a [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers) configuration to provide a development environment in Visual Studio Code. To use another type of environment, follow the instructions in the [section on preparing a development environment](#preparing-a-development-environment).
@@ -164,4 +170,6 @@ just containers::run
 
 ## License
 
-[MIT](https://spdx.org/licenses/MIT.html) © 2024-present Stuart Ellis.
+This project is licensed under the terms of [the MIT license](https://spdx.org/licenses/MIT.html) © 2024-present Stuart Ellis.
+
+It is compliant with [version 3.0 of the REUSE Specification](https://reuse.software/spec/).

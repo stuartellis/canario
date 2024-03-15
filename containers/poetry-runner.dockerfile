@@ -12,6 +12,11 @@ ARG BASE_IMAGE
 
 FROM ${BASE_IMAGE} as core
 
+RUN apt-get update && \
+    apt-get upgrade -qy
+
+FROM core as poetry
+
 ARG APP_NAME
 ARG APP_PATH
 ARG PYTHON_VERSION
@@ -27,8 +32,7 @@ ENV \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1
 
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y \
+RUN apt-get install --no-install-recommends -qy \
         curl \
         build-essential
 
@@ -42,7 +46,7 @@ COPY ./src/${APP_NAME} ./src/${APP_NAME}
 
 ## Builder stage
 
-FROM core AS builder
+FROM poetry AS app_builder
 
 ARG APP_PATH
 
@@ -51,7 +55,7 @@ RUN poetry build --format wheel
 
 ## Runner stage
 
-FROM ${BASE_IMAGE} as runner
+FROM core as runner
 ARG APP_NAME
 ARG APP_PATH
 
@@ -66,14 +70,14 @@ ENV \
     PIP_DEFAULT_TIMEOUT=100
 
 RUN groupadd --gid 1000 appusers \
-  && useradd --uid 1000 --gid appusers --shell /bin/bash --create-home appuser
+  && useradd --uid 1000 --gid appusers --shell /bin/sh --create-home appuser
 
 RUN mkdir -p ${APP_PATH} && chown appuser:appusers ${APP_PATH}
 
 WORKDIR ${APP_PATH}
 USER appuser
 
-COPY --from=builder ${APP_PATH}/dist/*.whl ./
+COPY --from=app_builder ${APP_PATH}/dist/*.whl ./
 RUN pip install --user ./${APP_NAME}*.whl
 
 HEALTHCHECK NONE
