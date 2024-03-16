@@ -13,8 +13,10 @@ thumbs.db
 # Project generated directories
 bin/
 logs/
-site/
 tmp/
+
+# MkDocs
+site/
 
 # Python
 __pycache__/
