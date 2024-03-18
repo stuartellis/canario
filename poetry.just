@@ -10,7 +10,7 @@
 about:
     @poetry about
 
-# Install Poetry tool
+# Install the Poetry tool and plug-ins
 add:
     #!/usr/bin/env sh
     set -eu
@@ -39,7 +39,7 @@ coverage:
 export:
     @poetry export --quiet --output=requirements.txt
 
-# Remove Poetry tool
+# Remove the Poetry tool and plug-ins
 rm:
     @pipx uninstall poetry
 
@@ -47,6 +47,6 @@ rm:
 setup:
     @poetry install
 
-# Run tests in Poetry environment
+# Run tests in the Poetry environment
 test:
     @poetry run pytest

@@ -48,7 +48,6 @@ fmt:
 # Install project tools and dependencies
 install:
     @just --unstable poetry::add
-    @just --unstable pre-commit::add
 
 # Run all checks
 lint:
