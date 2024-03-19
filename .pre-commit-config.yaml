@@ -45,13 +45,15 @@ repos:
         language: system
         args: [--unstable, --fmt, --check, -f]
         files: justfile
-    -   id: trivy-fs
-        name: trivy filesystem check
-        entry: aquasec/trivy:0.49.1 fs --cache-dir /src/tmp/trivy --ignorefile ./.trivyignore.yaml --exit-code 1 .
-        language: docker_image
-        pass_filenames: false
     -   id: trivy-config
-        name: trivy config check
-        entry: aquasec/trivy:0.49.1 config --cache-dir /src/tmp/trivy --ignorefile ./.trivyignore.yaml --exit-code 1 .
-        language: docker_image
+        name: trivy config
+        entry: trivy
+        language: system
+        args: [config, --cache-dir, tmp/trivy, --ignorefile, ./.trivyignore.yaml, --exit-code, '1', .]
+        pass_filenames: false
+    -   id: trivy-fs
+        name: trivy fs
+        entry: trivy
+        language: system
+        args: [fs, --cache-dir, tmp/trivy, --ignorefile, ./.trivyignore.yaml, --exit-code, '1', .]
         pass_filenames: false
