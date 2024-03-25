@@ -8,6 +8,8 @@ Runner module for the Canario application.
 This module provides the runner for the application.
 """
 
+from canario import config
+
 
 def run() -> None:
     """
@@ -27,4 +29,5 @@ def run() -> None:
     None
 
     """
-    print("Hello world")
+    settings = config.Settings()
+    print(settings.model_dump())

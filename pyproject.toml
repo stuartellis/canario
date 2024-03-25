@@ -31,6 +31,7 @@ cli = "canario.cli:main"
 httpx = {version = "^0.27.0", extras = ["http2"]}
 pydantic = "^2.6.3"
 python = "^3.12"
+pydantic-settings = "^2.2.1"
 
 [tool.poetry.group.dev]
 
@@ -105,7 +106,7 @@ target-version = "py312"
 select = ["ALL"]
 # Disable some rules for compatibility with ruff formatter:
 # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
-ignore = ["COM812", "COM819", "D206", "D211", "D212", "D300", "E111", "E114", "E117", "ISC001", "ISC002", "Q000", "Q001", "Q002", "Q003", "T201", "W191"]
+ignore = ["COM812", "COM819", "D206", "D212", "D300", "E111", "E114", "E117", "ISC001", "ISC002", "Q000", "Q001", "Q002", "Q003", "T201", "W191"]
 unfixable = [
     "T201",
 ]
