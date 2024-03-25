@@ -20,3 +20,4 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_prefix="CANO_")
     dry_run: bool = False
+    log_level: str = "INFO"
