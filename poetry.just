@@ -10,15 +10,6 @@
 about:
     @poetry about
 
-# Install the Poetry tool and plug-ins
-add:
-    #!/usr/bin/env sh
-    set -eu
-    PIPX_TOOL_NAME=poetry
-    PIPX_TOOL_VERSION=$(python3 -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['tool']['project']['utilities']['$PIPX_TOOL_NAME'])")
-    pipx install --force $PIPX_TOOL_NAME==$PIPX_TOOL_VERSION
-    pipx inject --force $PIPX_TOOL_NAME poetry-plugin-export
-
 # Delete generated files for Python and Poetry
 clean:
     #!/usr/bin/env sh
@@ -38,10 +29,6 @@ coverage:
 # Export project dependencies to requirements.txt
 export:
     @poetry export --quiet --output=requirements.txt
-
-# Remove the Poetry tool and plug-ins
-rm:
-    @pipx uninstall poetry
 
 # Install Poetry dependencies into project
 setup:

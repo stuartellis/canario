@@ -78,16 +78,15 @@ The list shows you the top-level recipes, and then the recipes in *just* submodu
 This project provides these top-level recipes:
 
 ```shell
-bootstrap # Install tools and dependencies, then set up environment for development
 build     # Build artifacts
 clean     # Delete generated files
 coverage  # Run test coverage analysis
 doc       # Display documentation in a Web browser
 fmt       # Format code
 help      # List available recipes
-install   # Install project tools and dependencies
 lint      # Run all checks
 setup     # Set up environment for development
+bootstrap # alias for `setup`
 test      # Run tests for project
 ```
 

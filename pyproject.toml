@@ -48,10 +48,7 @@ pymdown-extensions = "^10.7.1"
 runner = {app_name = "canario", base_image = "python:3.12.2-slim-bookworm", build_file = "containers/poetry-runner.dockerfile"}
 
 [tool.project.utilities]
-just = "1.25.2"
 poetry = "1.8.2"
-pre-commit = "3.6.2"
-trivy = "0.49.1"
 
 [tool.mypy]
 plugins = [

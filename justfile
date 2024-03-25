@@ -12,14 +12,11 @@ mod poetry
 mod pre-commit
 mod project
 
+alias bootstrap := setup
+
 # List available recipes
 help:
     @just --unstable --list
-
-# Install tools and dependencies, then set up environment for development
-bootstrap:
-    @just --unstable install
-    @just --unstable setup
 
 # Build artifacts
 build:
@@ -44,10 +41,6 @@ doc:
 # Format code
 fmt:
     @just --unstable pre-commit::run ruff-format
-
-# Install project tools and dependencies
-install:
-    @just --unstable poetry::add
 
 # Run all checks
 lint:
