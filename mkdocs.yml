@@ -4,7 +4,7 @@
 #
 # Configuration for MkDocs
 #
-# https://www.mkdocs.org/
+# https://www.mkdocs.org
 
 site_name: Canario
 site_description: A little application that checks the healthiness of the environment that it is in.

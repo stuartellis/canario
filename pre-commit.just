@@ -4,7 +4,7 @@
 #
 # Recipes for pre-commit
 #
-# https://pre-commit.com/
+# https://pre-commit.com
 
 # Check the project with pre-commit
 check:

@@ -4,7 +4,7 @@
 #
 # Recipes for Poetry
 #
-# https://python-poetry.org/
+# https://python-poetry.org
 
 # Display information about the Poetry tool
 about:

@@ -4,7 +4,7 @@
 #
 # Recipes for MkDocs
 #
-# https://www.mkdocs.org/
+# https://www.mkdocs.org
 
 # Build documentation
 [no-cd]
