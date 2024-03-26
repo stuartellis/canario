@@ -140,6 +140,12 @@ This project uses the [Conventional Commits](https://www.conventionalcommits.org
 
 This project uses [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
+Use the *poetry version* subcommand to change the version of the project. For example, this bumps the version of the project by one minor release number:
+
+```shell
+poetry version minor
+```
+
 ## Using Container Images
 
 To build a container image for this project, use this command:
