@@ -5,7 +5,7 @@
 
 [tool.poetry]
 name = "canario"
-version = "0.1.0"
+version = "0.2.0"
 description = "canario checks the healthiness of the environment that it is in"
 authors = ["Stuart Ellis <stuart@stuartellis.name>"]
 readme = "README.md"
