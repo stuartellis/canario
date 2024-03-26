@@ -17,7 +17,7 @@ A little application that checks the healthiness of the environment that it is i
 - [Install](#install)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
+- [Licenses](#licenses)
 
 ## Install
 
