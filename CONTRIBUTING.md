@@ -16,11 +16,11 @@ This project includes a [Dev Container](https://code.visualstudio.com/docs/devco
 
 - [Preparing a Development Environment](#preparing-a-development-environment)
 - [Using the just Recipes](#using-the-just-recipes)
+- [Using Container Images](#using-container-images)
 - [Testing](#testing)
 - [Commit Messages](#commit-messages)
 - [Versioning](#versioning)
-- [Using Container Images](#using-container-images)
-- [License](#license)
+- [Licenses](#licenses)
 
 ## Preparing a Development Environment
 
@@ -132,20 +132,6 @@ To produce a test coverage report for this project, use this command:
 just coverage
 ```
 
-## Commit Messages
-
-This project uses the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format for commit messages.
-
-## Versioning
-
-This project uses [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
-
-Use the *poetry version* subcommand to change the version of the project. For example, this bumps the version of the project by one minor release number:
-
-```shell
-poetry version minor
-```
-
 ## Using Container Images
 
 To build a container image for this project, use this command:
@@ -171,6 +157,28 @@ For example, to run the *app* container image, use this command:
 
 ```shell
 just containers::run
+```
+
+## Commit Messages
+
+This project uses the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format for commit messages.
+
+## Versioning
+
+This project uses [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
+
+### Raising the Project Version
+
+Use the *poetry version* subcommand to change the version of the project. For example, this bumps the version of the project by one minor release number:
+
+```shell
+poetry version minor
+```
+
+Once you have raised the project version, create a Git tag for the version from the *main* branch. For example, this creates a Git tag for version *0.2.0*:
+
+```shell
+git tag -am "Version 0.2.0" 0.2.0
 ```
 
 ## Licenses
