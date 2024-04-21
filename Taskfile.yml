@@ -1,0 +1,48 @@
+# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuart@stuartellis.name>
+#
+# SPDX-License-Identifier: MIT
+#
+# Tasks for the Task runner:
+#
+# https://taskfile.dev
+
+version: "3"
+
+silent: true
+
+includes:
+  docs: docs
+  pre-commit: .tasks/pre-commit
+  project: .tasks/project
+
+tasks:
+  default:
+    cmds:
+      - task: list
+
+  clean:
+    desc: Delete generated files
+    cmds:
+      - task: docs:clean
+      - task: project:clean
+
+  doc:
+    desc: Display documentation in a Web browser
+    cmds:
+      - task: docs:serve
+
+  fmt:
+    desc: Format code
+    cmds:
+      - task: pre-commit:run
+        vars: { HOOK_ID: 'ruff-format' }
+
+  lint:
+    desc: Run all checks
+    cmds:
+      - task: pre-commit:check
+
+  list:
+    desc: List available tasks
+    cmds:
+      - task --list

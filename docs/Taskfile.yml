@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuart@stuartellis.name>
+#
+# SPDX-License-Identifier: MIT
+#
+# Tasks for MkDocs:
+#
+# https://www.mkdocs.org
+
+version: "3"
+
+silent: true
+
+tasks:
+  default:
+    cmds:
+      - task: build
+
+  build:
+    desc: Build documentation
+    cmds:
+      - mkdocs build --strict
+
+  clean:
+    desc: Delete generated documentation
+    cmds:
+      - for: ["site"]
+        cmd: rm -fr {{ .ITEM }}
+
+  serve:
+    desc: Run development server for documentation
+    cmds:
+      - mkdocs serve
