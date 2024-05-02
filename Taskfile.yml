@@ -12,13 +12,19 @@ silent: true
 
 includes:
   docs: docs
-  pre-commit: .tasks/pre-commit
-  project: .tasks/project
+  pre-commit: tasks/pre-commit
+  project: tasks/project
 
 tasks:
   default:
     cmds:
       - task: list
+
+  bootstrap:
+    desc: Set up environment for development
+    aliases: [setup]
+    cmds:
+      - task: pre-commit:setup
 
   clean:
     desc: Delete generated files
@@ -33,12 +39,14 @@ tasks:
 
   fmt:
     desc: Format code
+    aliases: [format]
     cmds:
       - task: pre-commit:run
-        vars: { HOOK_ID: 'ruff-format' }
+        vars: { HOOK_ID: "ruff-format" }
 
   lint:
     desc: Run all checks
+    aliases: [check]
     cmds:
       - task: pre-commit:check
 
