@@ -8,14 +8,14 @@ SPDX-License-Identifier: MIT
 
 This project includes a [Dev Container](https://code.visualstudio.com/docs/devcontainers/containers) configuration to provide a development environment in Visual Studio Code. To use another type of environment, follow the instructions in the [section on preparing a development environment](#preparing-a-development-environment).
 
-> *just:* This project includes sets of tasks as [just](https://just.systems) recipes. The Dev Container installs *just* and uses it to prepare the development environment.
+> *Tasks:* This project includes sets of tasks for the [Task](https://taskfile.dev/) tool. The Dev Container installs Task and uses it to prepare the development environment.
 
 ---
 
 ## Table of Contents
 
 - [Preparing a Development Environment](#preparing-a-development-environment)
-- [Using the just Recipes](#using-the-just-recipes)
+- [Using the Tasks](#using-the-tasks)
 - [Using Container Images](#using-container-images)
 - [Testing](#testing)
 - [Commit Messages](#commit-messages)
@@ -29,91 +29,79 @@ This project includes a [Dev Container](https://code.visualstudio.com/docs/devco
 You may develop this project with macOS or any Linux system, including a WSL environment. The system must have these tools installed:
 
 - [Git](https://www.git-scm.com/)
-- [just 1.19.0 or above](https://just.systems/)
+- [Task](https://taskfile.dev/)
 - [Python 3.11 or above](https://www.python.org/)
 - [pipx](https://pipx.pypa.io/)
-
-You must also set an environment variable *JUST_UNSTABLE* with the value *true*. This project currently requires the environment variable *JUST_UNSTABLE* because it uses [modules](https://just.systems/man/en/chapter_54.html), which are not yet covered by the API stability guarantee for *just*.
-
-To set this variable for the Bash shell, add this to your shell configuration:
-
-```shell
-export JUST_UNSTABLE=true
-```
-
-To set this variable for the [fish](https://fishshell.com/) shell, add this to your *fish.config* file:
-
-```shell
-set -gx JUST_UNSTABLE true
-```
 
 > *Microsoft Windows:* Use the Dev Container to develop this project on Microsoft Windows.
 
 ### Setting Up The Project
 
-Use *pipx* to install [Poetry](https://python-poetry.org/) and [pre-commit](https://pre-commit.com/). If you do not already have these tools, run the *just* recipe in this project to install them:
+Use *pipx* to install [Poetry](https://python-poetry.org/) and [pre-commit](https://pre-commit.com/). If you do not already have these tools, run the  in this project to install them:
 
 ```shell
-just install
+task install
 ```
 
-Once you have the necessary tools, run the *just* recipe in this project to set up environments for development and tests:
+Once you have the necessary tools, run the task in this project to set up environments for development and tests:
 
 ```shell
-just setup
+task setup
 ```
 
-## Using the just Recipes
+## Using the Tasks
 
-This project includes sets of tasks as [just](https://just.systems) recipes. To see a list of the available recipes, type *just* in a terminal window:
+This project includes sets of tasks. To see a list of the available tasks, type *task* in a terminal window:
 
 ```shell
-just
+task
 ```
 
-The list shows you the top-level recipes, and then the recipes in *just* submodules.
+### Standard Tasks
 
-### Standard Recipes
-
-This project provides these top-level recipes:
+This project provides these tasks:
 
 ```shell
-build     # Build artifacts
-clean     # Delete generated files
-coverage  # Run test coverage analysis
-doc       # Display documentation in a Web browser
-fmt       # Format code
-help      # List available recipes
-lint      # Run all checks
-setup     # Set up environment for development
-bootstrap # alias for `setup`
-test      # Run tests for project
+task: Available tasks for this project:
+* bootstrap:              Set up environment for development      (aliases: setup)
+* clean:                  Delete generated files
+* doc:                    Display documentation in a Web browser
+* fmt:                    Format code         (aliases: format)
+* lint:                   Run all checks      (aliases: check)
+* list:                   List available tasks
+* docs:build:             Build documentation
+* docs:clean:             Delete generated documentation
+* docs:serve:             Run development server for documentation
+* pre-commit:check:       Check the project with pre-commit
+* pre-commit:run:         Run a specific pre-commit check on the project
+* pre-commit:setup:       Setup pre-commit for use
+* project:clean:          Delete generated files
 ```
 
-Use the top-level recipes for normal operations. These call the appropriate recipes in the submodules in the correct order.
+Use the top-level tasks for normal operations. These call the appropriate tasks in the namespaces in the correct order.
 
-### Recipes in the Submodules
+### Tasks in the Namespaces
 
-You may run a recipe in a *just* submodule. If a recipe accept parameters, the recipes list shows the default value of the parameter:
+You may run a task in a namespace:
 
 ```shell
 containers:
-        build image-id="runner" # Build container image
+        build IMAGE_ID="runner" # Build container image
         clean                   # Remove unused container images
-        run image-id="runner"   # Run container image
-        shell image-id="runner" # Open shell in container image
+        run IMAGE_ID="runner"   # Run container image
+        shell IMAGE_ID="runner" # Open shell in container image
 ```
 
-To run one of the tasks in a submodule, specify the submodule and the task, separated by *::* characters. For example, to run the *clean* recipe in the  *containers* submodule, enter this command:
+To run one of the tasks in a namespace, specify the namespace and the task, separated by *:* characters. For example, to run the *clean* recipe in the  *containers* namespace, enter this command:
 
 ```shell
-just containers::clean
+task containers:clean
 ```
 
-To override the default value for a parameter, specify the value after the recipe. For example, to specify the *image-id* parameter for the *containers::run* recipe as *db*, enter this command:
+To override the default value for a variable, specify the value after the recipe. For example, to specify the *IMAGE_ID* parameter for the *containers:run* recipe as *db*, enter this command:
 
 ```shell
-just containers::run db
+task containers:run IMAGE_ID=db
 ```
 
 ## Testing
@@ -121,7 +109,7 @@ just containers::run db
 To run the tests for this project, use this command:
 
 ```shell
-just test
+task test
 ```
 
 This runs [pre-commit](https://pre-commit.com/) with the checks that are defined for the project before it runs the test suite.
@@ -129,7 +117,7 @@ This runs [pre-commit](https://pre-commit.com/) with the checks that are defined
 To produce a test coverage report for this project, use this command:
 
 ```shell
-just coverage
+task coverage
 ```
 
 ## Using Container Images
@@ -137,26 +125,28 @@ just coverage
 To build a container image for this project, use this command:
 
 ```shell
-just build
+task build
 ```
+
+FIXME: Update containers tasks.
 
 Use the *containers* recipes to perform other tasks:
 
 ```shell
 just --list -f containers/mod.just
 Available recipes:
-    build image-id="runner" # Build container image
+    build IMAGE_ID="runner" # Build container image
     clean                   # Remove unused container images
-    run image-id="runner"   # Run container image
-    shell image-id="runner" # Open shell in container image
+    run IMAGE_ID="runner"   # Run container image
+    shell IMAGE_ID="runner" # Open shell in container image
 ```
 
-The *image-id* specifies the entry for the image in the *tool.project.containers* table of the *pyproject.toml* file. By default, recipes use the *app* container image, which provides the main application.
+The *IMAGE_ID* specifies the entry for the image in the *tool.project.containers* table of the *pyproject.toml* file. By default, recipes use the *app* container image, which provides the main application.
 
 For example, to run the *app* container image, use this command:
 
 ```shell
-just containers::run
+task containers:run
 ```
 
 ## Commit Messages
@@ -185,6 +175,6 @@ git tag -am "Version 0.2.0" 0.2.0
 
 This project is licensed under the [MIT](https://spdx.org/licenses/MIT.html) license © 2024-present Stuart Ellis.
 
-Some configuration files in this project are licensed under the [Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) license. Each of these files has the [SPDX](https://spdx.dev/) license identifier *CC0-1.0* either at the top of the file or in a *.license* file that has the same name as the file to be licensed.
+Some configuration files in this project are licensed under the [Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) license. Each of these files has the [SPDX](https://spdx.dev) license identifier *CC0-1.0* either at the top of the file or in a *.license* file that has the same name as the file to be licensed.
 
 This project is compliant with [version 3.0 of the REUSE Specification](https://reuse.software/spec/).

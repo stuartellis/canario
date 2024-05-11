@@ -1,4 +1,4 @@
-MIT License
+# MIT License
 
 Copyright (c) 2024-present Stuart Ellis <stuart@stuartellis.name>
 
