@@ -7,53 +7,75 @@
 # See https://pre-commit.com
 
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: 'v4.5.0'
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v4.5.0"
     hooks:
-    -   id: trailing-whitespace
-    -   id: end-of-file-fixer
-    -   id: check-json
-    -   id: check-toml
-    -   id: check-yaml
-    -   id: check-added-large-files
--   repo: https://github.com/fsfe/reuse-tool
-    rev: v3.0.1
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: check-added-large-files
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v3.0.2
     hooks:
-    -   id: reuse
--   repo: https://github.com/python-poetry/poetry
-    rev: '1.8.2'
+      - id: reuse
+  - repo: https://github.com/python-poetry/poetry
+    rev: "1.8.2"
     hooks:
-    -   id: poetry-check
-    -   id: poetry-lock
-    -   id: poetry-install
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: 'v0.3.4'
-  hooks:
-    - id: ruff
-    - id: ruff-format
--   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v1.9.0'
+      - id: poetry-check
+      - id: poetry-lock
+      - id: poetry-install
+  - repo: https://github.com/DavidAnson/markdownlint-cli2
+    rev: v0.13.0
     hooks:
-    -   id: mypy
+    - id: markdownlint-cli2
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.4.4"
+    hooks:
+      - id: ruff
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.10.0"
+    hooks:
+      - id: mypy
         additional_dependencies:
-        -    "pydantic==2.6.4"
--   repo: local
+          - "pydantic==2.7.1"
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.28.2
     hooks:
-    -   id: check-justfile
-        name: check justfile
-        entry: just
-        language: system
-        args: [--unstable, --fmt, --check, -f]
-        files: justfile
-    -   id: trivy-config
+      - id: check-taskfile
+  - repo: local
+    hooks:
+      - id: trivy-config
         name: trivy config
         entry: trivy
         language: system
-        args: [config, --cache-dir, tmp/trivy, --ignorefile, ./.trivyignore.yaml, --exit-code, '1', .]
+        args:
+          [
+            config,
+            --cache-dir,
+            tmp/trivy,
+            --ignorefile,
+            ./.trivyignore.yaml,
+            --exit-code,
+            "1",
+            .,
+          ]
         pass_filenames: false
-    -   id: trivy-fs
+      - id: trivy-fs
         name: trivy fs
         entry: trivy
         language: system
-        args: [fs, --cache-dir, tmp/trivy, --ignorefile, ./.trivyignore.yaml, --exit-code, '1', .]
+        args:
+          [
+            fs,
+            --cache-dir,
+            tmp/trivy,
+            --ignorefile,
+            ./.trivyignore.yaml,
+            --exit-code,
+            "1",
+            .,
+          ]
         pass_filenames: false
