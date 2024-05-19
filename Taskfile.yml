@@ -14,6 +14,8 @@ includes:
   docs: docs
   pre-commit: tasks/pre-commit
   project: tasks/project
+  py: tasks/python
+  venv: tasks/uv-developer
 
 tasks:
   default:
