@@ -43,8 +43,7 @@ tasks:
     desc: Format code
     aliases: [format]
     cmds:
-      - task: pre-commit:run
-        vars: { HOOK_ID: "ruff-format" }
+      - task: py:fmt
 
   lint:
     desc: Run all checks
@@ -56,3 +55,14 @@ tasks:
     desc: List available tasks
     cmds:
       - task --list
+
+  test:
+    desc: Run tests
+    cmds:
+      - task: pre-commit:run
+        vars: { HOOK_ID: "ruff-format" }
+      - task: pre-commit:run
+        vars: { HOOK_ID: "ruff" }
+      - task: pre-commit:run
+        vars: { HOOK_ID: "mypy" }
+      - task: py:test
