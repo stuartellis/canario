@@ -17,7 +17,7 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
   - repo: https://github.com/fsfe/reuse-tool
-    rev: v3.0.2
+    rev: "v3.0.2"
     hooks:
       - id: reuse
   - repo: https://github.com/python-poetry/poetry
@@ -27,11 +27,11 @@ repos:
       - id: poetry-lock
       - id: poetry-install
   - repo: https://github.com/DavidAnson/markdownlint-cli2
-    rev: v0.13.0
+    rev: "v0.13.0"
     hooks:
     - id: markdownlint-cli2
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.4.4"
+    rev: "v0.4.5"
     hooks:
       - id: ruff
       - id: ruff-format
@@ -42,7 +42,7 @@ repos:
         additional_dependencies:
           - "pydantic==2.7.1"
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.2
+    rev: "0.28.4"
     hooks:
       - id: check-taskfile
   - repo: local
