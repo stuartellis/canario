@@ -70,57 +70,40 @@ warn_required_dynamic_aliases = true
 
 [tool.ruff]
 src = ["src", "tests"]
-exclude = [
-    ".direnv",
-    ".eggs",
-    ".git",
-    ".git-rewrite",
-    ".ipynb_checkpoints",
-    ".mypy_cache",
-    ".nox",
-    ".pyenv",
-    ".pytest_cache",
-    ".pytype",
-    ".ruff_cache",
-    ".tox",
-    ".venv",
-    ".vscode",
-    "__pypackages__",
-    "_build",
-    "build",
-    "dist",
-    "node_modules",
-    "site-packages",
-    "venv",
-]
-
+target-version = "py312"
 line-length = 88
 indent-width = 4
 
-target-version = "py312"
-
 [tool.ruff.lint]
 select = ["ALL"]
-# Disable some rules for compatibility with ruff formatter:
+
+# Disable rules for compatibility with ruff formatter:
 # https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
-ignore = ["COM812", "COM819", "D206", "D212", "D300", "E111", "E114", "E117", "ISC001", "ISC002", "Q000", "Q001", "Q002", "Q003", "T201", "W191"]
+# In addition, disable docstring rule D212, so that D213 is enforced
+ignore = [
+  "COM812", "COM819",
+  "D206", "D212", "D300",
+  "E111", "E114", "E117",
+  "ISC001", "ISC002",
+  "Q000", "Q001", "Q002", "Q003",
+  "W191"
+]
+
 unfixable = [
+    # T201 forbids print()
     "T201",
 ]
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [tool.ruff.lint.per-file-ignores]
 "./tests/*.py" = [
+    # S101 forbids assert()
     "S101",
 ]
 
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
-skip-magic-trailing-comma = false
 line-ending = "auto"
-docstring-code-format = false
-docstring-code-line-length = "dynamic"
 
 [build-system]
 requires = ["poetry-core"]
