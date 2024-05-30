@@ -20,6 +20,7 @@ tasks:
     desc: Compile requirements files
     dir: "{{ .USER_WORKING_DIR }}"
     cmds:
+      # yamllint disable-line rule:line-length
       - uv pip compile -o {{ .PY_DEVELOPER_REQS_TXT }} --generate-hashes -q {{ .PY_DEVELOPER_REQS_IN }}
 
   create:

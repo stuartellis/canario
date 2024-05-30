@@ -7,16 +7,16 @@
 # https://www.mkdocs.org
 
 site_name: Canario
-site_description: A little application that checks the healthiness of the environment that it is in.
+site_description: A little application that checks the healthiness of the environment that it is in.  # yamllint disable-line rule:line-length
 site_url: https://github.com/stuartellis/canario
 repo_url: https://github.com/stuartellis/canario
 
 nav:
-- Home:
-  - Overview: index.md
-  - Contributing: contributing.md
-  - API reference: api.md
-  - License: license.md
+  - Home:
+      - Overview: index.md
+      - Contributing: contributing.md
+      - API reference: api.md
+      - License: license.md
 
 theme:
   name: readthedocs
@@ -28,17 +28,17 @@ exclude_docs: |
   mod.just
 
 plugins:
-- mkdocstrings:
-    default_handler: python
-    handlers:
-      python:
-        options:
-          show_source: false
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            show_source: false
 
 markdown_extensions:
-- pymdownx.snippets:
-    base_path:  # Paths to search for inclusions
-    - CONTRIBUTING.md
-    - LICENSE.txt
-    - README.md
-    check_paths: true
+  - pymdownx.snippets:
+      base_path:  # Paths to search for inclusions
+        - CONTRIBUTING.md
+        - LICENSE.txt
+        - README.md
+      check_paths: true
