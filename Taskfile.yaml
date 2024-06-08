@@ -2,16 +2,15 @@
 #
 # SPDX-License-Identifier: MIT
 #
-# Tasks for the Task runner:
+# Configuration for the Task runner
 #
-# https://taskfile.dev
+# See: https://taskfile.dev
 
 version: "3"
 
 silent: true
 
 includes:
-  docs: docs
   pre-commit: tasks/pre-commit
   project: tasks/project
   py: tasks/python
@@ -31,13 +30,8 @@ tasks:
   clean:
     desc: Delete generated files
     cmds:
-      - task: docs:clean
       - task: project:clean
-
-  doc:
-    desc: Display documentation in a Web browser
-    cmds:
-      - task: docs:serve
+      - task: py:clean
 
   fmt:
     desc: Format code
