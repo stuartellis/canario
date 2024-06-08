@@ -21,7 +21,7 @@ tasks:
     dir: "{{ .USER_WORKING_DIR }}"
     cmds:
       # yamllint disable-line rule:line-length
-      - uv pip compile -o {{ .PY_DEVELOPER_REQS_TXT }} --generate-hashes -q {{ .PY_DEVELOPER_REQS_IN }}
+      - uv pip compile -o {{ .PY_DEVELOPER_REQS_TXT }} -q {{ .PY_DEVELOPER_REQS_IN }}
 
   create:
     desc: Create Python virtual environment
