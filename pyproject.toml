@@ -69,7 +69,7 @@ init_typed = true
 warn_required_dynamic_aliases = true
 
 [tool.pytest.ini_options]
-addopts = "--cov=. --cov-report term"
+addopts = "--cov=src/canario/ --cov-report term"
 
 [tool.ruff]
 src = ["src", "tests"]
