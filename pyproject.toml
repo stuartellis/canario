@@ -68,6 +68,9 @@ init_forbid_extra = true
 init_typed = true
 warn_required_dynamic_aliases = true
 
+[tool.pytest.ini_options]
+addopts = "--cov=. --cov-report term"
+
 [tool.ruff]
 src = ["src", "tests"]
 target-version = "py312"
