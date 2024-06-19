@@ -13,7 +13,7 @@ silent: true
 includes:
   pre-commit: tasks/pre-commit
   project: tasks/project
-  py: tasks/python
+  py: tasks/python-developer
   venv: tasks/uv-developer
 
 tasks:
@@ -60,3 +60,9 @@ tasks:
       - task: pre-commit:run
         vars: { HOOK_ID: "mypy" }
       - task: py:test
+
+  update:
+    desc: Update
+    cmds:
+      - task: venv:update-reqs
+      - task: venv:sync
