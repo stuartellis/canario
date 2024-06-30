@@ -30,7 +30,7 @@ repos:
     hooks:
       - id: markdownlint-cli2
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.4.5"
+    rev: "v0.5.0"
     hooks:
       - id: ruff
       - id: ruff-format
@@ -39,7 +39,7 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies:
-          - "pydantic==2.6.4"
+          - "pydantic~=2.7.0"
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: "0.28.4"
     hooks:
