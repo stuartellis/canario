@@ -3,58 +3,36 @@
 # SPDX-License-Identifier: MIT
 #
 
-[tool.poetry]
+[project]
 name = "canario"
 version = "0.2.0"
-description = "canario checks the healthiness of the environment that it is in"
-authors = ["Stuart Ellis <stuart@stuartellis.name>"]
+description = "Checks the healthiness of the environment that it is in"
 readme = "README.md"
-license = "MIT"
-classifiers = [
-    "License :: OSI Approved :: MIT License",
-    "Development Status :: 3 - Alpha",
-    "Environment :: Console",
+requires-python = ">=3.12"
+license = {text = "MIT"}
+keywords = []
+authors = [
+  { name = "Stuart Ellis", email = "stuart@stuartellis.name" },
 ]
-homepage = "https://github.com/stuartellis/canario"
-repository = "https://github.com/stuartellis/canario"
-packages = [{include = "canario", from = "src"}]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = []
 
-[tool.poetry.urls]
+[project.urls]
+Documentation = "https://github.com/stuartellis/canario#readme"
 Issues = "https://github.com/stuartellis/canario/issues"
+Source = "https://github.com/stuartellis/canario"
 
-[tool.poetry.scripts]
-cli = "canario.cli:main"
-
-[tool.poetry_bumpversion.file."src/canario/__init__.py"]
-
-[tool.poetry.dependencies]
-httpx = {version = "^0.27.0", extras = ["http2"]}
-pydantic = "^2.6.3"
-python = "^3.12"
-pydantic-settings = "^2.2.1"
-
-[tool.poetry.group.dev]
-
-[tool.poetry.group.dev.dependencies]
-coverage = {extras = ["toml"], version = "^7.4.3"}
-mypy = "^1.9.0"
-pytest = "^8.0.2"
-ruff = "^0.3.2"
-mkdocs = "^1.5.3"
-mkdocstrings = {version = "^0.24.0", extras = ["python"]}
-pymdown-extensions = "^10.7.1"
-
-[tool.project.containers]
-runner = {app_name = "canario", base_image = "python:3.12.2-slim-bookworm", build_file = "containers/poetry-runner.dockerfile"}
-
-[tool.project.utilities]
-poetry = "1.8.2"
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
 [tool.mypy]
-plugins = [
-  "pydantic.mypy"
-]
-
 disallow_untyped_defs = true
 follow_imports = "normal"
 pretty = true
@@ -63,13 +41,13 @@ warn_no_return = false
 warn_redundant_casts = true
 warn_unused_ignores = true
 
-[tool.pydantic-mypy]
-init_forbid_extra = true
-init_typed = true
-warn_required_dynamic_aliases = true
+[tool.pip-tools]
+allow_unsafe = true # Default behavior in future pip-tools releases
+generate-hashes = true
+strip_extras = true # Default behavior in future pip-tools releases
 
 [tool.pytest.ini_options]
-addopts = "--cov=src/canario/ --cov-report term"
+addopts = "--cov=. --cov-report term"
 
 [tool.ruff]
 src = ["src", "tests"]
@@ -91,16 +69,11 @@ ignore = [
   "W191"
 ]
 
-unfixable = [
-    # T201 forbids print()
-    "T201",
-]
-
 [tool.ruff.lint.pydocstyle]
 convention = "pep257"
 
 [tool.ruff.lint.per-file-ignores]
-"./tests/*.py" = [
+"./tests/test_*.py" = [
     # S101 forbids assert()
     "S101",
 ]
@@ -112,7 +85,3 @@ line-ending = "auto"
 
 [tool.uv.pip]
 generate-hashes = true
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
