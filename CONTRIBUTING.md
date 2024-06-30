@@ -30,23 +30,17 @@ You may develop this project with macOS or any Linux system, including a WSL env
 
 - [Git](https://www.git-scm.com/)
 - [Task](https://taskfile.dev/)
-- [Python 3.11 or above](https://www.python.org/)
+- [Python 3.12 or above](https://www.python.org/)
 - [pipx](https://pipx.pypa.io/)
 
 > *Microsoft Windows:* Use the Dev Container to develop this project on Microsoft Windows.
 
 ### Setting Up The Project
 
-Use *pipx* to install [Poetry](https://python-poetry.org/) and [pre-commit](https://pre-commit.com/). If you do not already have these tools, run the  in this project to install them:
-
-```shell
-task install
-```
-
 Once you have the necessary tools, run the task in this project to set up environments for development and tests:
 
 ```shell
-task setup
+task bootstrap
 ```
 
 ## Using the Tasks
@@ -63,19 +57,14 @@ This project provides these tasks:
 
 ```shell
 task: Available tasks for this project:
-* bootstrap:              Set up environment for development      (aliases: setup)
-* clean:                  Delete generated files
-* doc:                    Display documentation in a Web browser
-* fmt:                    Format code         (aliases: format)
-* lint:                   Run all checks      (aliases: check)
-* list:                   List available tasks
-* docs:build:             Build documentation
-* docs:clean:             Delete generated documentation
-* docs:serve:             Run development server for documentation
-* pre-commit:check:       Check the project with pre-commit
-* pre-commit:run:         Run a specific pre-commit check on the project
-* pre-commit:setup:       Setup pre-commit for use
-* project:clean:          Delete generated files
+* bootstrap:               Set up environment for development      (aliases: setup)
+* clean:                   Delete generated files for project
+* docs:                    Run Website for project documentation
+* fmt:                     Format code         (aliases: format)
+* lint:                    Run all checks      (aliases: check)
+* list:                    List available tasks
+* test:                    Run tests
+* update:                  Update project dependencies
 ```
 
 Use the top-level tasks for normal operations. These call the appropriate tasks in the namespaces in the correct order.
@@ -85,17 +74,20 @@ Use the top-level tasks for normal operations. These call the appropriate tasks 
 You may run a task in a namespace:
 
 ```shell
-containers:
-        build IMAGE_ID="runner" # Build container image
-        clean                   # Remove unused container images
-        run IMAGE_ID="runner"   # Run container image
-        shell IMAGE_ID="runner" # Open shell in container image
+* py:lint:check:           Run ruff checks                             (aliases: py:lint:lint, py:lint:run)
+* py:lint:fmt:             Run ruff formatter with import sorting      (aliases: py:lint:format)
+* py:test:typehints:       Run mypy
+* py:test:unit:            Run pytest
+* venv:compile:            Compile Python requirements files
+* venv:create:             Create Python virtual environment
+* venv:delete:             Delete Python virtual environment
+* venv:editable:           Install as editable to Python virtual environment
 ```
 
-To run one of the tasks in a namespace, specify the namespace and the task, separated by *:* characters. For example, to run the *clean* recipe in the  *containers* namespace, enter this command:
+To run one of the tasks in a namespace, specify the namespace and the task, separated by *:* characters. For example, to run the *check* recipe in the *py:lint* namespace, enter this command:
 
 ```shell
-task containers:clean
+task py:lint:check
 ```
 
 To override the default value for a variable, specify the value after the recipe. For example, to specify the *IMAGE_ID* parameter for the *containers:run* recipe as *db*, enter this command:
@@ -115,10 +107,6 @@ task test
 This runs [pre-commit](https://pre-commit.com/) with the checks that are defined for the project before it runs the test suite.
 
 To produce a test coverage report for this project, use this command:
-
-```shell
-task coverage
-```
 
 ## Using Container Images
 
