@@ -15,12 +15,19 @@ silent: true
 
 tasks:
   clean:
-    desc: Delete generated files in project
+    desc: Delete generated files for Python testing
+    internal: true
     cmds:
       - for: [".coverage", "__pycache__", ".mypy_cache", ".pytest_cache"]
         cmd: rm -fr {{ .ITEM }}
 
-  test:
+  typehints:
+    desc: Run mypy
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - python3 -m mypy --ignore-missing-imports --scripts-are-modules
+
+  unit:
     desc: Run pytest
     dir: "{{.USER_WORKING_DIR}}"
     cmds:

@@ -21,7 +21,7 @@ tasks:
       - mkdocs build --strict
 
   clean:
-    desc: Delete generated files in project
+    desc: Delete generated documentation for project
     cmds:
       - for: ["site"]
         cmd: rm -fr {{ .ITEM }}

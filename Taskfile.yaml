@@ -11,9 +11,15 @@ version: "3"
 silent: true
 
 includes:
-  docs: tasks/mkdocs
-  pre-commit: tasks/pre-commit
-  project: tasks/project
+  doc:
+    taskfile: tasks/mkdocs
+    internal: true
+  pre-commit:
+    taskfile: tasks/pre-commit
+    internal: true
+  project:
+    taskfile: tasks/project
+    internal: true
   py:lint: tasks/ruff
   py:test: tasks/pytest
   venv: tasks/uv
@@ -30,11 +36,16 @@ tasks:
       - task: pre-commit:setup
 
   clean:
-    desc: Delete generated files
+    desc: Delete generated files for project
     cmds:
       - task: project:clean
       - task: docs:clean
       - task: py:lint:clean
+
+  docs:
+    desc: Run Website for project documentation
+    cmds:
+      - task: doc:serve
 
   fmt:
     desc: Format code
@@ -56,16 +67,12 @@ tasks:
   test:
     desc: Run tests
     cmds:
-      - task: pre-commit:run
-        vars: { HOOK_ID: "ruff-format" }
-      - task: pre-commit:run
-        vars: { HOOK_ID: "ruff" }
-      - task: pre-commit:run
-        vars: { HOOK_ID: "mypy" }
-      - task: py:test
+      - task: py:lint:check
+      - task: py:test:typehints
+      - task: py:test:unit
 
   update:
-    desc: Update
+    desc: Update project dependencies
     cmds:
       - task: venv:update-reqs
       - task: venv:sync

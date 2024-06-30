@@ -11,12 +11,16 @@ version: "3"
 silent: true
 
 tasks:
-  default:
+  check:
+    desc: Run ruff checks
+    aliases: [lint, run]
+    dir: "{{.USER_WORKING_DIR}}"
     cmds:
-      - task: format
+      - python3 -m ruff check
 
   clean:
-    desc: Delete generated files in project
+    desc: Delete generated files for formatting and linting
+    internal: true
     cmds:
       - python3 -m ruff clean -q
 
