@@ -13,9 +13,7 @@ silent: true
 includes:
   containers:
     taskfile: tasks/containers
-  doc:
-    taskfile: tasks/mkdocs
-    internal: true
+  doc: tasks/mkdocs
   pre-commit:
     taskfile: tasks/pre-commit
     internal: true
@@ -40,6 +38,7 @@ tasks:
   build:
     desc: Build artifacts
     cmds:
+      - task: doc:build
       - task: containers:build
 
   clean:

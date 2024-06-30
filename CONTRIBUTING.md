@@ -18,6 +18,7 @@ This project includes a [Dev Container](https://code.visualstudio.com/docs/devco
 - [Using the Tasks](#using-the-tasks)
 - [Using Container Images](#using-container-images)
 - [Testing](#testing)
+- [Documentation](#documentation)
 - [Commit Messages](#commit-messages)
 - [Versioning](#versioning)
 - [Licenses](#licenses)
@@ -84,7 +85,7 @@ You may run a task in a namespace:
 * venv:editable:           Install as editable to Python virtual environment
 ```
 
-To run one of the tasks in a namespace, specify the namespace and the task, separated by *:* characters. For example, to run the *check* recipe in the *py:lint* namespace, enter this command:
+To run one of the tasks in a namespace, specify the namespace and the task, separated by *:* characters. For example, to run the *check* task in the *py:lint* namespace, enter this command:
 
 ```shell
 task py:lint:check
@@ -102,6 +103,28 @@ This runs [pre-commit](https://pre-commit.com/) with the checks that are defined
 
 To produce a test coverage report for this project, use this command:
 
+## Documentation
+
+This project follows the [Standard README](https://github.com/RichardLitt/standard-readme) specification for the README file. Documentation is handled by [mkdocs](https://www.mkdocs.org).
+
+The *mkdocs* configuration requires the project to be installed in Python editable mode:
+
+```shell
+task venv:editable
+```
+
+To build the documentation for this project, run this command:
+
+```shell
+task doc:build
+```
+
+To open the documentation for this project in your Web browser, run this command:
+
+```shell
+task docs
+```
+
 ## Using Container Images
 
 To build a container image for this project, use this command:
@@ -110,7 +133,7 @@ To build a container image for this project, use this command:
 task build
 ```
 
-Use the *containers* recipes to perform other tasks:
+Use the *containers* tasks:
 
 ```shell
 * containers:build:         Build container image
