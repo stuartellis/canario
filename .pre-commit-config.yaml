@@ -19,12 +19,6 @@ repos:
     rev: "v3.0.2"
     hooks:
       - id: reuse
-  - repo: https://github.com/python-poetry/poetry
-    rev: "1.8.2"
-    hooks:
-      - id: poetry-check
-      - id: poetry-lock
-      - id: poetry-install
   - repo: https://github.com/DavidAnson/markdownlint-cli2
     rev: "v0.13.0"
     hooks:
