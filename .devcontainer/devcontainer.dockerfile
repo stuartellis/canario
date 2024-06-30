@@ -5,7 +5,7 @@
 # Builds Dev Container image for project
 #
 
-ARG VARIANT="bookworm"
+ARG VARIANT="jammy"
 FROM mcr.microsoft.com/devcontainers/base:1-${VARIANT}
 
 RUN export DEBIAN_FRONTEND=noninteractive \

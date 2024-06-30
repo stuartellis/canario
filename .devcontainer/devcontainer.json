@@ -3,7 +3,7 @@
     "build": {
         "dockerfile": "devcontainer.dockerfile",
         "args": {
-            "VARIANT": "bookworm"
+            "VARIANT": "jammy"
         }
     },
     "features": {
