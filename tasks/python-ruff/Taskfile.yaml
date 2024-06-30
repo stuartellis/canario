@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuart@stuartellis.name>
+#
+# SPDX-License-Identifier: MIT
+#
+# Developer tasks for Python with Ruff:
+#
+# - ruff: https://docs.astral.sh/ruff/
+
+version: "3"
+
+silent: true
+
+tasks:
+  clean:
+    desc: Delete generated files in project
+    cmds:
+      - python3 -m ruff clean -q
+
+  fmt:
+    desc: Run ruff formatter with import sorting
+    dir: "{{.USER_WORKING_DIR}}"
+    cmds:
+      - python3 -m ruff check --select I --fix -q
+      - python3 -m ruff format -q

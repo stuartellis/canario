@@ -13,8 +13,8 @@ silent: true
 includes:
   pre-commit: tasks/pre-commit
   project: tasks/project
-  py: tasks/python-developer
-  venv: tasks/uv-developer
+  py: tasks/python-testing
+  venv: tasks/python-uv
 
 tasks:
   default:

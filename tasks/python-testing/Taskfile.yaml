@@ -2,12 +2,11 @@
 #
 # SPDX-License-Identifier: MIT
 #
-# Developer tasks for Python with:
+# Testing tasks for Python with:
 #
 # - mypy: https://www.mypy-lang.org
 # - pytest: https://pytest.org
 # - pytest-cov: https://pytest-cov.readthedocs.io
-# - ruff: https://docs.astral.sh/ruff/
 
 version: "3"
 
@@ -17,16 +16,8 @@ tasks:
   clean:
     desc: Delete generated files in project
     cmds:
-      - python3 -m ruff clean -q
       - for: [".coverage", "__pycache__", ".mypy_cache", ".pytest_cache"]
         cmd: rm -fr {{ .ITEM }}
-
-  fmt:
-    desc: Run ruff formatter with import sorting
-    dir: "{{.USER_WORKING_DIR}}"
-    cmds:
-      - python3 -m ruff check --select I --fix -q
-      - python3 -m ruff format -q
 
   test:
     desc: Run pytest
