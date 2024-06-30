@@ -11,10 +11,12 @@ version: "3"
 silent: true
 
 includes:
+  docs: tasks/mkdocs
   pre-commit: tasks/pre-commit
   project: tasks/project
-  py: tasks/python-testing
-  venv: tasks/python-uv
+  py:lint: tasks/ruff
+  py:test: tasks/pytest
+  venv: tasks/uv
 
 tasks:
   default:
@@ -31,13 +33,14 @@ tasks:
     desc: Delete generated files
     cmds:
       - task: project:clean
-      - task: py:clean
+      - task: docs:clean
+      - task: py:lint:clean
 
   fmt:
     desc: Format code
     aliases: [format]
     cmds:
-      - task: py:fmt
+      - task: py:lint:fmt
 
   lint:
     desc: Run all checks

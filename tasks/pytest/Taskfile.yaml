@@ -2,11 +2,12 @@
 #
 # SPDX-License-Identifier: MIT
 #
-# Testing tasks for Python with:
+# Testing tasks for Python with mypy and pytest:
 #
 # - mypy: https://www.mypy-lang.org
 # - pytest: https://pytest.org
 # - pytest-cov: https://pytest-cov.readthedocs.io
+# - pytest-randomly: https://pypi.org/project/pytest-randomly/
 
 version: "3"
 
