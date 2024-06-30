@@ -12,7 +12,7 @@ silent: true
 
 vars:
   PY_DEVELOPER_REQS_IN: "requirements-dev.in"
-  PY_DEVELOPER_REQS_TXT: "requirements-env-dev.txt"
+  PY_DEVELOPER_REQS_TXT: "requirements-dev.txt"
   PY_DEVELOPER_VENV: ".venv"
 
 tasks:
