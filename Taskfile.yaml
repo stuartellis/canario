@@ -39,7 +39,8 @@ tasks:
     desc: Delete generated files for project
     cmds:
       - task: project:clean
-      - task: docs:clean
+      - task: doc:clean
+      - task: py:test:clean
       - task: py:lint:clean
 
   docs:
