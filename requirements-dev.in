@@ -6,6 +6,9 @@
 # Include requirements for running the application
 -r requirements-app.in
 
+# Include requirements for releasing the application
+-r .python-requirements/release.in
+
 # Include requirements for testing the application
 -r .python-requirements/developer.in
 

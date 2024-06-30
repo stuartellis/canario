@@ -90,12 +90,6 @@ To run one of the tasks in a namespace, specify the namespace and the task, sepa
 task py:lint:check
 ```
 
-To override the default value for a variable, specify the value after the recipe. For example, to specify the *IMAGE_ID* parameter for the *containers:run* recipe as *db*, enter this command:
-
-```shell
-task containers:run IMAGE_ID=db
-```
-
 ## Testing
 
 To run the tests for this project, use this command:
@@ -116,25 +110,15 @@ To build a container image for this project, use this command:
 task build
 ```
 
-FIXME: Update containers tasks.
-
 Use the *containers* recipes to perform other tasks:
 
 ```shell
-just --list -f containers/mod.just
-Available recipes:
-    build IMAGE_ID="runner" # Build container image
-    clean                   # Remove unused container images
-    run IMAGE_ID="runner"   # Run container image
-    shell IMAGE_ID="runner" # Open shell in container image
-```
-
-The *IMAGE_ID* specifies the entry for the image in the *tool.project.containers* table of the *pyproject.toml* file. By default, recipes use the *app* container image, which provides the main application.
-
-For example, to run the *app* container image, use this command:
-
-```shell
-task containers:run
+* containers:build:         Build container image
+* containers:lint:          Check container build file with Trivy
+* containers:rebuild:       Force a complete rebuild of container image
+* containers:run:           Run container image
+* containers:scan:          Scan container image
+* containers:shell:         Open shell in container image
 ```
 
 ## Commit Messages
@@ -145,19 +129,7 @@ This project uses the [Conventional Commits](https://www.conventionalcommits.org
 
 This project uses [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
-### Raising the Project Version
-
-Use the *poetry version* subcommand to change the version of the project. For example, this bumps the version of the project by one minor release number:
-
-```shell
-poetry version minor
-```
-
-Once you have raised the project version, create a Git tag for the version from the *main* branch. For example, this creates a Git tag for version *0.2.0*:
-
-```shell
-git tag -am "Version 0.2.0" 0.2.0
-```
+The version is automatically calculated from Git tags, using [setuptools_scm](https://setuptools-scm.readthedocs.io).
 
 ## Licenses
 

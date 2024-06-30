@@ -5,8 +5,8 @@
 
 [project]
 name = "canario"
-version = "0.2.0"
 description = "Checks the healthiness of the environment that it is in"
+dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "MIT"}
@@ -29,7 +29,7 @@ Issues = "https://github.com/stuartellis/canario/issues"
 Source = "https://github.com/stuartellis/canario"
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [tool.mypy]
@@ -82,6 +82,10 @@ convention = "pep257"
 quote-style = "double"
 indent-style = "space"
 line-ending = "auto"
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+local_scheme = "no-local-version"
 
 [tool.uv.pip]
 generate-hashes = true

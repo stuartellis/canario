@@ -11,6 +11,8 @@ version: "3"
 silent: true
 
 includes:
+  containers:
+    taskfile: tasks/containers
   doc:
     taskfile: tasks/mkdocs
     internal: true
@@ -34,6 +36,11 @@ tasks:
     aliases: [setup]
     cmds:
       - task: pre-commit:setup
+
+  build:
+    desc: Build artifacts
+    cmds:
+      - task: containers:build
 
   clean:
     desc: Delete generated files for project
