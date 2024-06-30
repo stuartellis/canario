@@ -39,6 +39,6 @@ markdown_extensions:
   - pymdownx.snippets:
       base_path:  # Paths to search for inclusions
         - CONTRIBUTING.md
-        - LICENSE.txt
+        - LICENSE.md
         - README.md
       check_paths: true

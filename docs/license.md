@@ -4,4 +4,4 @@ SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuart@stuartellis.name>
 SPDX-License-Identifier: MIT
 -->
 
---8<-- "LICENSE.txt"
+--8<-- "LICENSE.md"
