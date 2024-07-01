@@ -29,7 +29,6 @@
     "postCreateCommand": "task bootstrap",
     "containerUser": "vscode",
     "runArgs": [
-        "--userns=keep-id",
         "--env-file",
         ".devcontainer/devcontainer.env"
     ]
