@@ -52,6 +52,7 @@ USER appuser
 ENV PATH="/opt/venv/bin:$PATH"
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONFAULTHANDLER=1 PYTHONUNBUFFERED=1
 
+# FIXME: Currently a placeholder.
+# The HEALTHCHECK, CMD and related settings depend on the application.
 HEALTHCHECK NONE
-
 CMD . /opt/venv/bin/activate && python3 -m canario
