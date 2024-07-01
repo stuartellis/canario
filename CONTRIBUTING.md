@@ -57,7 +57,6 @@ task
 This project provides these tasks:
 
 ```shell
-task: Available tasks for this project:
 * bootstrap:               Set up environment for development      (aliases: setup)
 * clean:                   Delete generated files for project
 * docs:                    Run Website for project documentation
