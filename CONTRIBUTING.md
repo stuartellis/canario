@@ -119,7 +119,7 @@ To build the documentation for this project, run this command:
 task doc:build
 ```
 
-To open the documentation for this project in your Web browser, run this command:
+To view the documentation for this project in your Web browser, run this command:
 
 ```shell
 task docs
@@ -153,6 +153,24 @@ This project uses the [Conventional Commits](https://www.conventionalcommits.org
 This project uses [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
 
 The version is automatically calculated from Git tags, using [setuptools_scm](https://setuptools-scm.readthedocs.io).
+
+To see the current version of your copy of the project, run the *version* task:
+
+```shell
+task version
+```
+
+## Setting a New Version
+
+To raise the version number for the project, add a Git tag that follows the format of [Semantic Versioning 2.0](https://semver.org/spec/v2.0.0.html).
+
+For example, to create version *0.3.0* with the comment *Release for 202407010931z*, run these commands:
+
+```shell
+git checkout main
+git tag -am "Release for 202407010931z" 0.3.0
+git push --tags
+```
 
 ## Licenses
 
