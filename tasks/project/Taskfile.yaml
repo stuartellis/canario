@@ -17,3 +17,11 @@ tasks:
     cmds:
       - for: ["tmp"]
         cmd: rm -fr {{ .ITEM }}
+
+  version:
+    desc: Get current project version
+    cmds:
+      - "echo {{.PROJECT_VERSION}}"
+    vars:
+      PROJECT_VERSION:
+        sh: python3 -m setuptools_scm

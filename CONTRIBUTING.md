@@ -66,6 +66,7 @@ task: Available tasks for this project:
 * list:                    List available tasks
 * test:                    Run tests
 * update:                  Update project dependencies
+* version:                 Get current project version
 ```
 
 Use the top-level tasks for normal operations. These call the appropriate tasks in the namespaces in the correct order.
