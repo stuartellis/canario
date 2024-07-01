@@ -12,17 +12,17 @@ silent: true
 
 includes:
   containers:
-    taskfile: tasks/containers
-  doc: tasks/mkdocs
+    taskfile: tasks/console/containers
+  doc: tasks/console/mkdocs
   pre-commit:
-    taskfile: tasks/pre-commit
+    taskfile: tasks/console/pre-commit
     internal: true
   project:
-    taskfile: tasks/project
+    taskfile: tasks/console/project
     internal: true
-  py:lint: tasks/ruff
-  py:test: tasks/pytest
-  venv: tasks/uv
+  py:lint: tasks/console/ruff
+  py:test: tasks/console/pytest
+  venv: tasks/console/uv
 
 tasks:
   default:
