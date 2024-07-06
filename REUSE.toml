@@ -2,9 +2,9 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 #
-# Configuration for Reuse:
+# Configuration for REUSE:
 #
-# https://www.mkdocs.org
+# https://reuse.software/
 
 version = 1
 SPDX-PackageName = "canario"
