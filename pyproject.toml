@@ -41,11 +41,6 @@ warn_no_return = false
 warn_redundant_casts = true
 warn_unused_ignores = true
 
-[tool.pip-tools]
-allow_unsafe = true # Default behavior in future pip-tools releases
-generate-hashes = true
-strip_extras = true # Default behavior in future pip-tools releases
-
 [tool.pytest.ini_options]
 addopts = "--cov=. --cov-report term"
 
