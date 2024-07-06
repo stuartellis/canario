@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2024-present Stuart Ellis <stuart@stuartellis.name>
+#
+# SPDX-License-Identifier: CC0-1.0
+#
+# Configuration for Reuse:
+#
+# https://www.mkdocs.org
+
+version = 1
+SPDX-PackageName = "canario"
+SPDX-PackageSupplier = "Stuart Ellis <https://www.stuartellis.name>"
+SPDX-PackageDownloadLocation = "https://github.com/stuartellis/canario"
+
+[[annotations]]
+path = "requirements**.txt"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Stuart Ellis"
+SPDX-License-Identifier = "CC0-1.0"
