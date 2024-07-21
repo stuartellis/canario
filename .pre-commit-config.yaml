@@ -16,7 +16,7 @@ repos:
       - id: check-toml
       - id: check-added-large-files
   - repo: https://github.com/fsfe/reuse-tool
-    rev: "v4.0.2"
+    rev: "v4.0.3"
     hooks:
       - id: reuse
   - repo: https://github.com/DavidAnson/markdownlint-cli2
@@ -50,23 +50,11 @@ repos:
         name: trivy config
         entry: trivy
         language: system
-        args:
-          [
-            config,
-            --exit-code,
-            "1",
-            .,
-          ]
+        args: [config, --exit-code, "1", .]
         pass_filenames: false
       - id: trivy-fs
         name: trivy fs
         entry: trivy
         language: system
-        args:
-          [
-            fs,
-            --exit-code,
-            "1",
-            .,
-          ]
+        args: [fs, --exit-code, "1", .]
         pass_filenames: false
