@@ -35,7 +35,7 @@ repos:
         additional_dependencies:
           - "pydantic~=2.7.0"
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: "0.29.0"
+    rev: "0.29.1"
     hooks:
       - id: check-gitlab-ci
       - id: check-taskfile
